@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  currency_app:
+    build: .
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - API_KEY=${API_KEY}
+      - API_URL=${API_URL}
+      - API_BASE_CURRENCY=${API_BASE_CURRENCY}
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/app
+    command: python src/app.py
+
+volumes:
+  pgdata:
