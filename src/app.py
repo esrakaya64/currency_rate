@@ -1,10 +1,5 @@
-"""
-Main application module for the Currency Rates application.
-"""
-
 import sys
 import os
-# Projenin kök dizinini (CURRENCY RATES-2 klasörünü) import yoluna ekler
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
 import time
 import schedule
@@ -20,7 +15,6 @@ class CurrencyRateApp:
         self.api_service = CurrencyAPIService()
 
     def update_currency_rates(self):
-        """Main job function to fetch and store currency rates."""
         logger.info("Döviz kurları güncelleme işi başlatılıyor")
         rates_data = self.api_service.fetch_currency_rates()
         if rates_data:
@@ -28,7 +22,6 @@ class CurrencyRateApp:
         logger.info("Döviz kurları güncelleme işi tamamlandı")
 
     def run(self):
-        """Run the application."""
         self.db.create_tables()
         
         # Schedule the daily update
