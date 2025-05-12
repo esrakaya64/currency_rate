@@ -1,13 +1,8 @@
-"""
-Veritabanı işlemleri için ana modül.
-PostgreSQL veritabanı bağlantısı ve işlemleri burada yönetilir.
-"""
 import logging
 import psycopg2
 from dotenv import load_dotenv
 import sys
 import os
-# Projenin kök dizinini (CURRENCY RATES-2 klasörünü) import yoluna ekler
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
 from src.config.config import DB_CONFIG
 
@@ -20,11 +15,9 @@ class Database:
         self.config = DB_CONFIG
 
     def get_connection(self):
-        """Veritabanı bağlantısı oluşturur."""
         return psycopg2.connect(**self.config)
 
     def create_tables(self):
-        """Gerekli veritabanı tablolarını oluşturur."""
         try:
             with self.get_connection() as conn:
                 with conn.cursor() as cur:
