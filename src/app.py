@@ -12,7 +12,7 @@ from datetime import datetime
 from config.config import APP_CONFIG
 from database.database import Database
 from services.api_service import CurrencyAPIService
-from utils.logger import logger
+from logging.logger import logger
 
 class CurrencyRateApp:
     def __init__(self):
