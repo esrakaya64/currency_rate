@@ -1,6 +1,3 @@
-"""
-Logging configuration for the application.
-"""
 import logging
 from config.config import APP_CONFIG
 
@@ -12,6 +9,5 @@ def setup_logger():
     )
     return logging.getLogger(__name__)
 
-# Create a default logger instance
 logger = setup_logger() 
 
