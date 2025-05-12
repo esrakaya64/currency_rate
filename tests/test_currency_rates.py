@@ -13,7 +13,6 @@ class TestCurrencyRates(unittest.TestCase):
 
     def test_currency_rate_structure(self):
         """Test if currency rate has required fields"""
-        # Database sınıfı bir ORM değil, dictionary kullanmalıyız
         rate_data = {
             'date': datetime.now(),
             'currency_code': "EUR",
